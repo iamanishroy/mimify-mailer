@@ -15,20 +15,22 @@ app.listen(port, () => {
   console.log(`Example app is listening on port https://localhost:${port}`);
 });
 async function mail(to, data) {
+  data = data.replace(":~", "/");
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 587,
     auth: {
-      user: "mimify.mailer@gmail.com",
-      pass: "mimify@mailer123456",
+      user: "creative.world.mailer@gmail.com",
+      pass: "creative-world-mailer",
+      // user: "mimify.mailer@gmail.com",
+      // pass: "mimify@mailer123456",
     },
   });
   let info = await transporter.sendMail({
-    from: '"verifier mimify " mimify.mailer@gmail.com', // sender address
-    to: to, // list of receivers
-    subject: "Hello ✔", // Subject line
-    text: data, // plain text body
-    html: `<b>${data}</b>`, // html body
+    from: '"Creative World" creative.world.mailer@gmail.com',
+    to: to,
+    subject: "Creative World Subscribed mail ✔",
+    html: data,
   });
   console.log(info.messageId);
   res.send(true);
