@@ -15,7 +15,6 @@ app.listen(port, () => {
   console.log(`Example app is listening on port https://localhost:${port}`);
 });
 async function mail(to, data) {
-  data = data.replace(":~", "/");
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 587,
@@ -30,7 +29,7 @@ async function mail(to, data) {
     from: '"Creative World" creative.world.mailer@gmail.com',
     to: to,
     subject: "Creative World Subscribed mail ✔",
-    html: data,
+    html: decodeURIComponent(data),
   });
   console.log(info.messageId);
   res.send(true);
