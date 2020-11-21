@@ -2,7 +2,7 @@
 const express = require("express");
 const app = express();
 const nodemailer = require("nodemailer");
-let port = process.env.PORT || 3000;
+let port = process.env.PORT || 4000;
 app.get("/", (req, res) => {
   res.send("Mailer");
 });
@@ -19,14 +19,14 @@ async function mail(to, data) {
     host: "smtp.gmail.com",
     port: 587,
     auth: {
-      user: "creative.world.mailer@gmail.com",
-      pass: "creative-world-mailer",
-      // user: "mimify.mailer@gmail.com",
-      // pass: "mimify@mailer123456",
+      // user: "creative.world.mailer@gmail.com",
+      // pass: "creative-world-mailer",
+      user: "mimify.mailer@gmail.com",
+      pass: "mimify@mailer123456",
     },
   });
   let info = await transporter.sendMail({
-    from: '"Creative World" creative.world.mailer@gmail.com',
+    from: '"Creative World" mimify.mailer@gmail.com',//creative.world.mailer@gmail.com',
     to: to,
     subject: "Creative World Subscribed mail ✔",
     html: decodeURIComponent(data),
